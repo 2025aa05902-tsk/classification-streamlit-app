@@ -54,6 +54,7 @@ if uploaded_file is not None:
             X = X.reindex(columns=model_features, fill_value=0)
 
             # Scaling
+            scaler = joblib.load("models/scaler.pkl")
             X = scaler.transform(X)
 
             # Predictions
@@ -85,5 +86,5 @@ if uploaded_file is not None:
 else:
     st.info("Please upload the test data in csv format")
 
-st.sidebar.markdown("📧 [Email Me](mailto:2025aa05902@wilp.bits-pilani.ac.in)")
+st.sidebar.markdown("📧 [Email Me for issues](mailto:2025aa05902@wilp.bits-pilani.ac.in)")
 
