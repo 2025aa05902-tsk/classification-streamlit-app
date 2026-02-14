@@ -45,9 +45,9 @@ if uploaded_file is not None:
             # Encoding categorical columns
             X = pd.get_dummies(X)
 
-            # Align columns (important)
-            model_features = model.feature_names_in_
-            X = X.reindex(columns=model_features, fill_value=0)
+            # # Align columns (important)
+            # model_features = model.feature_names_in_
+            # X = X.reindex(columns=model_features, fill_value=0)
 
             # Predictions
             y_pred = model.predict(X)
@@ -77,3 +77,5 @@ if uploaded_file is not None:
             st.error(f"Error processing given file: {e}")
 else:
     st.info("Please upload the test data in csv format")
+
+st.markdown("📧 [Email Me](mailto:2025aa05902@wilp.bits-pilani.ac.in)")
