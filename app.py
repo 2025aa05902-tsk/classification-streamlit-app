@@ -13,11 +13,11 @@ st.write("Upload test dataset and choose model for prediction.")
 # Load models
 models = {
     "Logistic Regression": joblib.load("models/logistic_regression.pkl"),
-    "Decision Tree": joblib.load("models/decision_tree.pkl"),
-    "KNN": joblib.load("models/knn.pkl"),
-    "Naive Bayes": joblib.load("models/naive_bayes.pkl"),
-    "Random Forest": joblib.load("models/random_forest.pkl"),
-    "XGBoost": joblib.load("models/xgboost.pkl"),
+    "Decision Tree": joblib.load("models/decision_tree_classifier.pkl"),
+    "KNN": joblib.load("models/k-nearest_neighbor_classifier.pkl"),
+    "Naive Bayes": joblib.load("models/naive_bayes_classifier_-_gaussian_or_multinomial.pkl"),
+    "Random Forest": joblib.load("models/ensemble_model_-_random_forest.pkl"),
+    "XGBoost": joblib.load("models/ensemble_model_-_xgboost.pkl"),
 }
 
 # Model selection
