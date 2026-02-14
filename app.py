@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
-from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, matthews_corrcoef, confusion_matrix, roc_auc_score
 
 st.title("Income Classification App")
@@ -34,6 +33,10 @@ if uploaded_file is not None:
     st.write("Dataset Preview")
     st.write(df.head())
 
+    # Cleaning
+    df = df.replace("?", np.nan)
+    df = df.dropna()
+
     if "income" not in df.columns:
         st.error("Dataset must contain 'income' column.")
     elif st.button("Perform Evaluation"):
@@ -42,16 +45,15 @@ if uploaded_file is not None:
             y = df["income"].apply(lambda x: 1 if x.strip() == ">50K" else 0)
             X = df.drop("income", axis=1)
 
-
-            # One-hot encoding
-            X = pd.get_dummies(X, drop_first=True)
+             # Encoding
+            categorical_cols = X.select_dtypes(include="object").columns
+            X = pd.get_dummies(X, columns=categorical_cols, drop_first=True)
 
             # Align columns (important)
             model_features = model.feature_names_in_
             X = X.reindex(columns=model_features, fill_value=0)
 
-            # Scale
-            scaler = StandardScaler()
+            # Scaling
             X = scaler.transform(X)
 
             # Predictions
@@ -84,3 +86,4 @@ else:
     st.info("Please upload the test data in csv format")
 
 st.sidebar.markdown("📧 [Email Me](mailto:2025aa05902@wilp.bits-pilani.ac.in)")
+
