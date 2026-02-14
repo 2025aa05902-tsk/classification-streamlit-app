@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
-
+from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, matthews_corrcoef, confusion_matrix, roc_auc_score
 
 st.title("Income Classification App")
@@ -42,12 +42,17 @@ if uploaded_file is not None:
             y = df["income"].apply(lambda x: 1 if x.strip() == ">50K" else 0)
             X = df.drop("income", axis=1)
 
-            # Encoding categorical columns
-            X = pd.get_dummies(X)
 
-            # # Align columns (important)
-            # model_features = model.feature_names_in_
-            # X = X.reindex(columns=model_features, fill_value=0)
+            # One-hot encoding
+            X = pd.get_dummies(X, drop_first=True)
+
+            # Align columns (important)
+            model_features = model.feature_names_in_
+            X = X.reindex(columns=model_features, fill_value=0)
+
+            # Scale
+            scaler = StandardScaler()
+            X = scaler.transform(X)
 
             # Predictions
             y_pred = model.predict(X)
@@ -78,4 +83,4 @@ if uploaded_file is not None:
 else:
     st.info("Please upload the test data in csv format")
 
-st.markdown("📧 [Email Me](mailto:2025aa05902@wilp.bits-pilani.ac.in)")
+st.sidebar.markdown("📧 [Email Me](mailto:2025aa05902@wilp.bits-pilani.ac.in)")
