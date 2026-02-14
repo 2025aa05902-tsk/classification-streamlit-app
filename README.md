@@ -42,4 +42,4 @@ Name: The Adult Income Classification dataset
 | Random Forest       | Improves performance with **85.80% accuracy** and **0.92 AUC**. Better precision (0.78) and improved MCC (0.60) show stronger overall classification balance compared to single-tree models. |
 | XGBoost             | Best overall model with **86.93% accuracy**, highest **AUC (0.93)**, and strongest **F1-score (0.71)**. Balanced precision (0.79) and recall (0.65) indicate robust and well-generalized performance. |
 
-Link to [Classification Model App]("https://classification-app-2025aa05902.streamlit.app/")
+Link to [Classification Model App](https://classification-app-2025aa05902.streamlit.app/)
